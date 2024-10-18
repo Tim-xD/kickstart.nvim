@@ -5,4 +5,5 @@
 return {
   { 'stevearc/oil.nvim', opts = {} },
   { 'andrewferrier/debugprint.nvim', opts = {} },
+  'sindrets/diffview.nvim',
 }
