@@ -615,6 +615,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         nixd = {},
+        texlab = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -689,6 +690,8 @@ require('lazy').setup({
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
         c = { 'clangd' },
+        nix = { 'nixfmt' },
+        latex = { 'latexindent' },
       },
     },
   },
