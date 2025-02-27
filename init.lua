@@ -619,7 +619,7 @@ require('lazy').setup({
         texlab = {},
         bashls = {},
         dockerls = {},
-        jdtls = {},
+        -- jdtls = {}, Keep commented, already attached in ./lua/custom/plugins/init.lua
 
         lua_ls = {
           -- cmd = {...},
