@@ -593,6 +593,35 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+      local function run_bash(command, default_value)
+        -- Use io.popen to execute the command and capture the output
+        local handle = io.popen(command)
+        if handle then
+          -- Read the output
+          local result = handle:read '*a'
+          -- Close the handle
+          handle:close()
+          -- Remove any trailing newlines or whitespace
+          result = result:match '^%s*(.-)%s*$'
+          -- Return the result if it's not empty, otherwise return the default value
+          if result and result ~= '' then
+            return result
+          else
+            return command
+          end
+        else
+          return command
+        end
+      end
+
+      local function get_absolute_path(program)
+        return run_bash('which ' .. program)
+      end
+
+      local function get_nix_store(program)
+        return run_bash("find /nix/store -maxdepth 1 -type d -name '*" .. program .. "*'")
+      end
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -619,20 +648,15 @@ require('lazy').setup({
         texlab = {},
         bashls = {},
         dockerls = {},
-        -- jdtls = {}, Keep commented, already attached in ./lua/custom/plugins/init.lua
-
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
+        jdtls = {
+          filetypes = { 'java' },
+          cmd = {
+            get_absolute_path 'jdtls',
+            '--jvm-arg=-javaagent:' .. get_nix_store '-lombok-' .. '/share/java/lombok.jar',
+          },
+          root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+          init_options = {
+            bundles = {},
           },
         },
       }
@@ -696,6 +720,7 @@ require('lazy').setup({
         c = { 'clangd' },
         nix = { 'nixfmt' },
         latex = { 'latexindent' },
+        java = { 'google-java-format' },
       },
     },
   },
