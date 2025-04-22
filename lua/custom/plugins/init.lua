@@ -14,10 +14,10 @@ return {
       vim.g.vimtex_view_method = 'general'
     end,
   },
-  {
-    'mfussenegger/nvim-jdtls',
-    ft = { 'java' },
-  },
+  -- {
+  --   'mfussenegger/nvim-jdtls',
+  --   ft = { 'java' },
+  -- },
   {
     'mistweaverco/kulala.nvim',
     keys = {
