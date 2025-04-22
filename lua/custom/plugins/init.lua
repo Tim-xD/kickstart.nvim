@@ -31,4 +31,9 @@ return {
       global_keymaps = true,
     },
   },
+  {
+    'danymat/neogen',
+    config = true,
+    version = '*',
+  },
 }

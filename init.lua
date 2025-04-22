@@ -648,6 +648,8 @@ require('lazy').setup({
         texlab = {},
         bashls = {},
         dockerls = {},
+        docker_compose_language_service = {},
+        marksman = {},
         jdtls = {
           filetypes = { 'java' },
           cmd = {
@@ -717,7 +719,7 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
-        c = { 'clangd' },
+        c = { 'clang-format' },
         nix = { 'nixfmt' },
         latex = { 'latexindent' },
         java = { 'google-java-format' },
@@ -971,6 +973,8 @@ require('lazy').setup({
     },
   },
 })
+
+vim.opt.cc = '80'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
