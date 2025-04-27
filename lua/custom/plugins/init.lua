@@ -14,13 +14,18 @@ return {
       vim.g.vimtex_view_method = 'general'
     end,
   },
-  {
-    'mfussenegger/nvim-jdtls',
-    ft = { 'java' },
-  },
+  -- {
+  --   'mfussenegger/nvim-jdtls',
+  --   ft = { 'java' },
+  -- },
   {
     'danymat/neogen',
     config = true,
     version = '*',
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    opts = {},
   },
 }

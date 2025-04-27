@@ -614,13 +614,13 @@ require('lazy').setup({
         end
       end
 
-      local function get_absolute_path(program)
-        return run_bash('which ' .. program)
-      end
+      -- local function get_absolute_path(program)
+      --   return run_bash('which ' .. program)
+      -- end
 
-      local function get_nix_store(program)
-        return run_bash("find /nix/store -maxdepth 1 -type d -name '*" .. program .. "*'")
-      end
+      -- local function get_nix_store(program)
+      --   return run_bash("find /nix/store -maxdepth 1 -type d -name '*" .. program .. "*'")
+      -- end
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -647,17 +647,19 @@ require('lazy').setup({
         nixd = {},
         texlab = {},
         bashls = {},
-        jdtls = {
-          filetypes = { 'java' },
-          cmd = {
-            get_absolute_path 'jdtls',
-            '--jvm-arg=-javaagent:' .. get_nix_store '-lombok-' .. '/share/java/lombok.jar',
-          },
-          root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
-          init_options = {
-            bundles = {},
-          },
-        },
+        marksman = {},
+        phpactor = {},
+        -- jdtls = {
+        --   filetypes = { 'java' },
+        --   cmd = {
+        --     get_absolute_path 'jdtls',
+        --     '--jvm-arg=-javaagent:' .. get_nix_store '-lombok-' .. '/share/java/lombok.jar',
+        --   },
+        --   root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+        --   init_options = {
+        --     bundles = {},
+        --   },
+        -- },
       }
 
       -- Ensure the servers and tools above are installed
@@ -715,11 +717,15 @@ require('lazy').setup({
 
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        yaml = { 'prettierd', 'prettier', stop_after_first = true },
+        html = { 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
 
         c = { 'clang-format' },
         nix = { 'nixfmt' },
         latex = { 'latexindent' },
-        java = { 'google-java-format' },
+        -- java = { 'google-java-format' },
       },
     },
   },
