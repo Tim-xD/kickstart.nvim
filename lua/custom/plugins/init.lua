@@ -14,10 +14,6 @@ return {
       vim.g.vimtex_view_method = 'general'
     end,
   },
-  -- {
-  --   'mfussenegger/nvim-jdtls',
-  --   ft = { 'java' },
-  -- },
   {
     'danymat/neogen',
     config = true,
