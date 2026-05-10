@@ -6,9 +6,9 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
+  'sindrets/diffview.nvim',
   { 'stevearc/oil.nvim', opts = {} },
   { 'andrewferrier/debugprint.nvim', opts = {} },
-  'sindrets/diffview.nvim',
   {
     'lervag/vimtex',
     lazy = false, -- we don't want to lazy load VimTeX
@@ -18,13 +18,12 @@ return {
     end,
   },
   {
-    'danymat/neogen',
-    config = true,
-    version = '*',
-  },
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    opts = {},
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '1.*',
+    opts = {
+      dependencies_bin = { tinymist = 'tinymist', websocat = 'websocat' },
+      extra_args = { '--partial-rendering=true' },
+    },
   },
 }
